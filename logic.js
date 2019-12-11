@@ -6,18 +6,18 @@ let model = (function () {
 
     function addItem() {
 
-
         let title = document.getElementById('bookTitle').value;
         let author = document.getElementById('author').value;
         let isbn = document.getElementById('isbn').value;
+
         document.getElementById('bookTitle').value = '';
         document.getElementById('author').value = '';
         document.getElementById('isbn').value = '';
+
         model.storage.books.push({
             title: title,
             author: author,
             isbn: isbn
-
         });
 
         localStorage.setItem('books', JSON.stringify(model.storage.books));
@@ -63,6 +63,7 @@ let model = (function () {
     }
 
     function deleteItem(event) {
+
         let isbn = event.target.parentElement.previousElementSibling.innerText;
 
         model.storage.books.forEach((item, index) => {
@@ -78,6 +79,7 @@ let model = (function () {
     };
 
     function init() {
+
         if (localStorage.getItem('books')) {
 
             model.storage.books = JSON.parse(localStorage.getItem('books'));
@@ -142,10 +144,6 @@ let view = (function () {
                 model.editItem(event)
             })
         });
-
-
-
-
 
         document.getElementById('bookTitle').focus();
 
